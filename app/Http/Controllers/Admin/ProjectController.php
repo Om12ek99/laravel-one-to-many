@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Type;
@@ -31,18 +32,17 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         //validazione dei valori della tabella richiesti
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-        ]);
+        $data= $request->validated();
+        // dd($data);
 
         // da non confondere con il newProject nel seeder!!!
         $newProject = new Project();
         $newProject->title = $request->title;
         $newProject->content = $request->content;
+        $newProject->type_id = $request->type_id;
         $newProject->slug = Str::slug($request->title);
         $newProject->save();
 

@@ -25,7 +25,7 @@
         <div class="form-group">
             <label for="type_id">Tipo</label>
             <select class="form-select" name="type_id" id="type_id">
-                <option value=""></option>
+                <option value="">Seleziona</option>
                     @foreach ($types as $type)
                     <option value="{{$type->id}}">{{$type->project_type}}</option>
                     @endforeach                
