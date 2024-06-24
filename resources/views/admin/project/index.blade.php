@@ -16,6 +16,7 @@
             <tr>
                 <th>ID</th>
                 <th>Title</th>
+                <th>Tipo</th>
                 <th>Slug</th>
                 <th>Azioni</th>
             </tr>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>{{ $curProject->id }}</td>
                     <td>{{ $curProject->title }}</td>
+                    <td>{{ $curProject->type?->project_type}}</td>
                     <td>{{ $curProject->slug }}</td>
                     <td>            
                         {{-- link per lo show        < --}}
