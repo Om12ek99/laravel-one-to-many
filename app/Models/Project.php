@@ -12,4 +12,10 @@ class Project extends Model
     protected $table = 'project';
 
     protected $fillable = ['title', 'content', 'slug'];
+
+
+    public function type(){
+        // relazione inversa di uno a molti
+        return $this->belongsTo(Type::class);
+    }
 }
