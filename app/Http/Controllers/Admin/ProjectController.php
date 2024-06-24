@@ -79,22 +79,27 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Project $newProject)
     {
         $types = Type::all();
-        return view('admin.project.edit', compact('project','types'));
+        return view('admin.project.edit', compact('newProject','types'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Project $project)
+    public function update(UpdatePostRequest $request, Project $newProject)
     {
-        $data= $request->validated();
+        
+      $data= $request->validate ([
+        'title' => 'required', 'max:255',
+        'content' => 'required',
+        'type_id'=> 'nullable',
+        ]);
         $data['slug'] = Str::slug($data['title']);
-        $project->update($data);
+        $newProject->update($data);
 
-        return redirect()->route('admin.posts.show', $project->slug)->with('message', 'post ' . $project->title . ' è stato modificato');    }
+        return redirect()->route('admin.project.show', $newProject->slug)->with('success', 'project ' . $newProject->title . ' è stato modificato');    }
 
     /**
      * Remove the specified resource from storage.

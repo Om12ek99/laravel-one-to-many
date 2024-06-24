@@ -31,6 +31,8 @@
                     <td>            
                         {{-- link per lo show        < --}}
                         <a href="{{ route('admin.project.show',['newProject'=>$curProject->slug])}}" class="btn btn-info">Mostra</a>
+                        {{-- link per l'edit --}}
+                        <a href="{{ route('admin.project.edit', ['newProject' => $curProject->slug]) }}" class="btn btn-warning">Modifica</a>
 
                         {{-- link per il destroy --}}
                         {{-- nell'action alla chiamata di destroy, si prende come riferimento lo slug e non l'id, perche nella rotta la abbiamo definita cosi --}}
