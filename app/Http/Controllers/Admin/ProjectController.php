@@ -91,8 +91,10 @@ class ProjectController extends Controller
     public function update(UpdatePostRequest $request, Project $project)
     {
         $data= $request->validated();
+        $data['slug'] = Str::slug($data['title']);
         $project->update($data);
-    }
+
+        return redirect()->route('admin.posts.show', $project->slug)->with('message', 'post ' . $project->title . ' è stato modificato');    }
 
     /**
      * Remove the specified resource from storage.
