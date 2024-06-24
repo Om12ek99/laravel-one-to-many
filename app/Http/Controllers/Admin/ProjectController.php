@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Type;
@@ -78,17 +79,19 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        $types = Type::all();
+        return view('admin.project.edit', compact('project','types'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePostRequest $request, Project $project)
     {
-        //
+        $data= $request->validated();
+        $project->update($data);
     }
 
     /**
